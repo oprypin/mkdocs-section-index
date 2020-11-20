@@ -14,3 +14,4 @@ with_groups() {
 "$@" pytest -q
 python -c 'import sys, os; sys.exit((3,8) <= sys.version_info < (3,9) and os.name == "posix")' ||
 "$@" pytype mkdocs_section_index
+"$@" mkdocs build -f example/mkdocs.yml --strict
