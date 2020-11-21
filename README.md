@@ -94,7 +94,7 @@ Such a special item gets put into a nav in the place of a `Section` which has a 
 
 Then all that a theme's template needs to do is to meaningfully support such nav items -- ones that have both a `url` and `children`. The item should be directly clickable to go to the corresponding page, and also be able to house sub-items.
 
-Of course, currently templates don't expect such a case; or if they did, it would be purely by chance. So currently this plugin "hacks into" templates of supported themes, patching their source on the fly to fit its needs. The hope is that, once this plugin gains enough traction, theme authors will be happy to directly support this scenario (which is totally non-intrusive and backwards-compatible), and then the patches could be dropped.
+Of course, currently templates don't expect such a case; or if they did, it would be purely by chance. So currently this plugin "hacks into" templates of supported themes, [patching their source on the fly](mkdocs_section_index/rewrites.py) to fit its needs. The hope is that, once this plugin gains enough traction, theme authors will be happy to directly support this scenario (which is totally non-intrusive and backwards-compatible), and then the patches could be dropped.
 
 ### "Alternatives considered"
 
