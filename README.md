@@ -2,7 +2,15 @@
 
 Plugin for [MkDocs][] to allow clickable sections that lead to an index page.
 
-[MkDocs]: https://www.mkdocs.org/
+[![PyPI](https://img.shields.io/pypi/v/mkdocs-section-index)](https://pypi.org/project/mkdocs-section-index/)
+[![GitHub](https://img.shields.io/github/license/oprypin/mkdocs-section-index)](LICENSE.md)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/oprypin/mkdocs-section-index/CI)](https://github.com/oprypin/mkdocs-section-index/actions?query=event%3Apush+branch%3Amaster)
+
+```shell
+pip install mkdocs-section-index
+```
+
+[mkdocs]: https://www.mkdocs.org/
 
 ## [Example](example/)
 
