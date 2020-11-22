@@ -16,7 +16,7 @@ pip install mkdocs-section-index
 
 ![Screencast with comparison](https://user-images.githubusercontent.com/371383/99844559-8c4caa00-2b73-11eb-9e97-fad82447746c.gif)
 
-With this `nav` in *mkdocs.yml* (or without `nav` but with an equivalent directory structure):
+With this `nav` in *mkdocs.yml* (or without `nav` but with [an equivalent directory structure](example/docs/)):
 
 ```yaml
 nav:
@@ -74,7 +74,7 @@ Normally in MkDocs [`nav`][nav], the items can be one of:
     * ([`children`][children] is always `None`)
 * a [`Link`][Link] (inconsequential for our purposes).
 
-This plugin introduces a hybrid kind of `Page`, which has all of these properties:
+This plugin introduces a [hybrid kind of `Page`](mkdocs_section_index/__init__.py), which has all of these properties:
 
 * `title`: `str`
 * `url`: `str`
@@ -82,7 +82,7 @@ This plugin introduces a hybrid kind of `Page`, which has all of these propertie
 * `is_page` = `True`
 * `is_section` = `True`
 
-Such a special item gets put into a nav in the place of a `Section` which has a `Page` with an intentionally omitted title as its first child. Those two are naturally combined into a special page-section that's a hybrid of the two.
+Such a special item gets put into a nav in the place of a `Section` which has a `Page` with an intentionally omitted title as its first child. Those two are naturally combined into a special [section-page](mkdocs_section_index/__init__.py) that's a hybrid of the two.
 
 [nav]: https://www.mkdocs.org/user-guide/custom-themes/#nav
 [Section]: https://www.mkdocs.org/user-guide/custom-themes/#section

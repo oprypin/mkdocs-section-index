@@ -2,17 +2,17 @@ import pathlib
 import textwrap
 from typing import Optional, Tuple
 
-import jinja2.environment
-import jinja2.loaders
+from jinja2.environment import Environment
+from jinja2.loaders import BaseLoader
+
+__all__ = ["TemplateRewritingLoader"]
 
 
-class TemplateRewritingLoader(jinja2.loaders.BaseLoader):
-    def __init__(self, loader: jinja2.loaders.BaseLoader):
+class TemplateRewritingLoader(BaseLoader):
+    def __init__(self, loader: BaseLoader):
         self.loader = loader
 
-    def get_source(
-        self, environment: jinja2.environment.Environment, template: str
-    ) -> Tuple[str, str, bool]:
+    def get_source(self, environment: Environment, template: str) -> Tuple[str, str, bool]:
         src, filename, uptodate = self.loader.get_source(environment, template)
         path = pathlib.Path(filename).as_posix()
 
