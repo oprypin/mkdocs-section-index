@@ -2,7 +2,7 @@ import collections
 import logging
 
 import mkdocs.utils
-from jinja2.environment import Environment
+from jinja2 import Environment
 from mkdocs.plugins import BasePlugin
 from mkdocs.structure.nav import Navigation, Section
 from mkdocs.structure.pages import Page

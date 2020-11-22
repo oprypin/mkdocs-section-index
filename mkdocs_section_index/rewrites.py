@@ -4,8 +4,7 @@ import textwrap
 from typing import Optional, Tuple
 
 import mkdocs.utils
-from jinja2.environment import Environment
-from jinja2.loaders import BaseLoader
+from jinja2 import BaseLoader, Environment
 
 __all__ = ["TemplateRewritingLoader"]
 

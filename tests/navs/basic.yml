@@ -1,0 +1,36 @@
+input:
+- Aaa: a.md
+- Bbb: b.md
+- Section 1:
+  - Ccc: s1/c.md
+  - Link: http://example.org/
+- Section 2:
+  - s2/index.md
+- Section 3:
+  - s3/index.md
+  - Subsection:
+    - s3s/index.md
+    - Ddd: s3s/d.md
+  - Eee: s3/e.md
+false: |-
+  Page(title='Aaa', url='a.html')
+  Page(title='Bbb', url='b.html')
+  Section(title='Section 1')
+      Page(title='Ccc', url='s1/c.html')
+      Link(title='Link', url='http://example.org/')
+  SectionPage(title='Section 2', url='s2/index.html')
+  SectionPage(title='Section 3', url='s3/index.html')
+      SectionPage(title='Subsection', url='s3s/index.html')
+          Page(title='Ddd', url='s3s/d.html')
+      Page(title='Eee', url='s3/e.html')
+true: |-
+  Page(title='Aaa', url='a/')
+  Page(title='Bbb', url='b/')
+  Section(title='Section 1')
+      Page(title='Ccc', url='s1/c/')
+      Link(title='Link', url='http://example.org/')
+  SectionPage(title='Section 2', url='s2/')
+  SectionPage(title='Section 3', url='s3/')
+      SectionPage(title='Subsection', url='s3s/')
+          Page(title='Ddd', url='s3s/d/')
+      Page(title='Eee', url='s3/e/')
