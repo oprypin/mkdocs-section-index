@@ -36,5 +36,5 @@ class SectionIndexPlugin(mkdocs.plugins.BasePlugin):
     def on_env(
         self, env: jinja2.environment.Environment, config, files
     ) -> jinja2.environment.Environment:
-        env.loader = rewrites.TemplateEditingLoader(env.loader)
+        env.loader = rewrites.TemplateRewritingLoader(env.loader)
         return env
