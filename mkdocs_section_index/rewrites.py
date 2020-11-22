@@ -1,24 +1,40 @@
+import logging
 import pathlib
 import textwrap
 from typing import Optional, Tuple
 
+import mkdocs.utils
 from jinja2.environment import Environment
 from jinja2.loaders import BaseLoader
 
 __all__ = ["TemplateRewritingLoader"]
 
 
+log = logging.getLogger(f"mkdocs.plugins.{__name__}")
+log.addFilter(mkdocs.utils.warning_filter)
+
+
 class TemplateRewritingLoader(BaseLoader):
     def __init__(self, loader: BaseLoader):
         self.loader = loader
+        self.found_supported_theme = False
 
     def get_source(self, environment: Environment, template: str) -> Tuple[str, str, bool]:
         src, filename, uptodate = self.loader.get_source(environment, template)
+        old_src = src
         path = pathlib.Path(filename).as_posix()
 
         if path.endswith("/material/partials/nav-item.html"):
             src = _transform_material_nav_template(src)
+        else:
+            return src, filename, uptodate
+        self.found_supported_theme = True
 
+        if old_src == src:
+            log.warning(
+                f"Failed to adapt the theme file '{filename}'. "
+                f"This is likely a bug in mkdocs-section-index, and things won't work as expected."
+            )
         return src, filename, uptodate
 
 

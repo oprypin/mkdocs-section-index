@@ -1,5 +1,7 @@
 import collections
+import logging
 
+import mkdocs.utils
 from jinja2.environment import Environment
 from mkdocs.plugins import BasePlugin
 from mkdocs.structure.nav import Navigation, Section
@@ -8,6 +10,9 @@ from mkdocs.structure.pages import Page
 from . import SectionPage, rewrites
 
 __all__ = ["SectionIndexPlugin"]
+
+log = logging.getLogger(f"mkdocs.plugins.{__name__}")
+log.addFilter(mkdocs.utils.warning_filter)
 
 
 class SectionIndexPlugin(BasePlugin):
@@ -38,5 +43,13 @@ class SectionIndexPlugin(BasePlugin):
         return nav
 
     def on_env(self, env: Environment, config, files) -> Environment:
-        env.loader = rewrites.TemplateRewritingLoader(env.loader)
+        env.loader = self._loader = rewrites.TemplateRewritingLoader(env.loader)
         return env
+
+    def on_post_build(self, config):
+        if not self._loader.found_supported_theme:
+            log.warning(
+                "section-index plugin couldn't detect a supported theme to adapt. "
+                "It probably won't work as expected. "
+                "See https://github.com/oprypin/mkdocs-section-index#theme-support"
+            )
