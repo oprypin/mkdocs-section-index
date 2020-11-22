@@ -1,3 +1,4 @@
+# https://github.com/squidfunk/mkdocs-material/blob/4ffa86660913ee955b33f543840766002bc4d43c/material/partials/nav-item.html
 input: |
   {#-
     This file was automatically generated - do not edit
@@ -82,7 +83,7 @@ output: |
       {% endif %}
       <label class="md-nav__link" for="{{ path }}">
         {% if nav_item.url %}
-          <a href="{{ nav_item.url | url }}"{% if nav_item == page %}  class="md-nav__link--active"{% endif %}>
+          <a href="{{ nav_item.url | url }}"{% if nav_item == page %} class="md-nav__link--active"{% endif %}>
         {% endif %}
           {{ nav_item.title }}
         {% if nav_item.url %}</a>{% endif %}
@@ -96,7 +97,7 @@ output: |
             {% include ".icons/material/arrow-left.svg" %}
           </span>
           {% if nav_item.url %}
-            <a href="{{ nav_item.url | url }}"{% if nav_item == page %}  class="md-nav__link--active"{% endif %}>
+            <a href="{{ nav_item.url | url }}"{% if nav_item == page %} class="md-nav__link--active"{% endif %}>
           {% endif %}
             {{ nav_item.title }}
           {% if nav_item.url %}</a>{% endif %}
@@ -121,7 +122,7 @@ output: |
       {% if toc | first is defined %}
         <label class="md-nav__link md-nav__link--active" for="__toc">
           {% if nav_item.url %}
-            <a href="{{ nav_item.url | url }}"{% if nav_item == page %}  class="md-nav__link--active"{% endif %}>
+            <a href="{{ nav_item.url | url }}"{% if nav_item == page %} class="md-nav__link--active"{% endif %}>
           {% endif %}
             {{ nav_item.title }}
           {% if nav_item.url %}</a>{% endif %}

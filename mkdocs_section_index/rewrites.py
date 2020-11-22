@@ -25,7 +25,9 @@ class TemplateRewritingLoader(BaseLoader):
         path = pathlib.Path(filename).as_posix()
 
         if path.endswith("/material/partials/nav-item.html"):
-            src = _transform_material_nav_template(src)
+            src = _transform_material_nav_item_template(src)
+        elif path.endswith("/themes/readthedocs/base.html"):
+            src = _transform_readthedocs_base_template(src)
         else:
             return src, filename, uptodate
         self.found_supported_theme = True
@@ -38,10 +40,10 @@ class TemplateRewritingLoader(BaseLoader):
         return src, filename, uptodate
 
 
-def _transform_material_nav_template(src: str) -> str:
+def _transform_material_nav_item_template(src: str) -> str:
     repl = """\
         {% if nav_item.url %}
-          <a href="{{ nav_item.url | url }}"{% if nav_item == page %}  class="md-nav__link--active"{% endif %}>
+          <a href="{{ nav_item.url | url }}"{% if nav_item == page %} class="md-nav__link--active"{% endif %}>
         {% endif %}
           [...]
         {% if nav_item.url %}</a>{% endif %}
@@ -49,6 +51,25 @@ def _transform_material_nav_template(src: str) -> str:
     lines = src.split("\n")
     for i, line in enumerate(lines):
         if line.endswith("{{ nav_item.title }}") and "href=" not in lines[i - 1]:
+            lines[i] = _replace_line(lines[i], repl)
+    return "\n".join(lines)
+
+
+def _transform_readthedocs_base_template(src: str) -> str:
+    repl = """\
+        {% if nav_item.url %}
+            <ul><li{% if nav_item == page %} class="current"{% endif %}>
+                <a href="{{ nav_item.url|url }}" style="padding: 0; font-size: inherit; line-height: inherit">
+        {% endif %}
+                [...]
+        {% if nav_item.url %}
+                </a>
+            </li></ul>
+        {% endif %}
+    """
+    lines = src.split("\n")
+    for i, line in enumerate(lines):
+        if "{{ nav_item.title }}" in line:
             lines[i] = _replace_line(lines[i], repl)
     return "\n".join(lines)
 
