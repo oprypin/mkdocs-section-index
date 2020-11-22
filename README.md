@@ -33,7 +33,7 @@ plugins:
 
 The *borgs/index.md* page is merged as the index of the "Borgs" section. Normally sections in [MkDocs][] cannot be clickable as pages themselves, but this plugin makes that possible.
 
-**See also: [a realistic demo site](https://oprypin.github.io/crystal-book/syntax_and_semantics/literals.html).**
+**See also: [a realistic demo site](https://oprypin.github.io/crystal-book/syntax_and_semantics/literals/).**
 
 ## Theme support
 
