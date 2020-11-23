@@ -1,6 +1,6 @@
 # mkdocs-section-index
 
-Plugin for [MkDocs][] to allow clickable sections that lead to an index page.
+[Plugin][] for [MkDocs][] to allow clickable sections that lead to an index page.
 
 [![PyPI](https://img.shields.io/pypi/v/mkdocs-section-index)](https://pypi.org/project/mkdocs-section-index/)
 [![GitHub](https://img.shields.io/github/license/oprypin/mkdocs-section-index)](LICENSE.md)
@@ -11,6 +11,7 @@ pip install mkdocs-section-index
 ```
 
 [mkdocs]: https://www.mkdocs.org/
+[plugin]: https://www.mkdocs.org/user-guide/plugins/
 
 ## [Example](example/)
 
@@ -87,7 +88,7 @@ Such a special item gets put into a nav in the place of a `Section` which has a 
 
 [nav]: https://www.mkdocs.org/user-guide/custom-themes/#nav
 [Section]: https://www.mkdocs.org/user-guide/custom-themes/#section
-[Page]: https://www.mkdocs.org/user-guide/custom-themes/#section
+[Page]: https://www.mkdocs.org/user-guide/custom-themes/#page
 [children]: https://github.com/mkdocs/mkdocs/blob/2f833a1a29095733e53a04d062d315629d974ebe/mkdocs/structure/pages.py#L26
 [Link]: https://www.mkdocs.org/user-guide/custom-themes/#link
 
