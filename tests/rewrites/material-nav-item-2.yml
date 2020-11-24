@@ -70,18 +70,18 @@ output: |
       {% set checked = "checked" if nav_item.active %}
       <input class="md-nav__toggle md-toggle" data-md-toggle="{{ path }}" type="checkbox" id="{{ path }}" {{ checked }}>
       <label class="md-nav__link" for="{{ path }}">
+        <span class="md-nav__icon md-icon"></span>
         {% if nav_item.url %}
-          <a href="{{ nav_item.url | url }}"{% if nav_item == page %} class="md-nav__link--active"{% endif %}>
+          <a href="{{ nav_item.url | url }}"{% if nav_item == page %} class="md-nav__link--active"{% endif %} style="display: block">
         {% endif %}
           {{ nav_item.title }}
         {% if nav_item.url %}</a>{% endif %}
-        <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="{{ nav_item.title }}" data-md-level="{{ level }}">
         <label class="md-nav__title" for="{{ path }}">
           <span class="md-nav__icon md-icon"></span>
           {% if nav_item.url %}
-            <a href="{{ nav_item.url | url }}"{% if nav_item == page %} class="md-nav__link--active"{% endif %}>
+            <a href="{{ nav_item.url | url }}"{% if nav_item == page %} class="md-nav__link--active"{% endif %} style="display: block">
           {% endif %}
             {{ nav_item.title }}
           {% if nav_item.url %}</a>{% endif %}
@@ -105,12 +105,12 @@ output: |
       {% endif %}
       {% if toc | first is defined %}
         <label class="md-nav__link md-nav__link--active" for="__toc">
+          <span class="md-nav__icon md-icon"></span>
           {% if nav_item.url %}
-            <a href="{{ nav_item.url | url }}"{% if nav_item == page %} class="md-nav__link--active"{% endif %}>
+            <a href="{{ nav_item.url | url }}"{% if nav_item == page %} class="md-nav__link--active"{% endif %} style="display: block">
           {% endif %}
             {{ nav_item.title }}
           {% if nav_item.url %}</a>{% endif %}
-          <span class="md-nav__icon md-icon"></span>
         </label>
       {% endif %}
       <a href="{{ nav_item.url | url }}" class="md-nav__link md-nav__link--active">

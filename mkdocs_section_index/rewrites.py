@@ -42,15 +42,17 @@ class TemplateRewritingLoader(BaseLoader):
 def _transform_material_nav_item_template(src: str) -> str:
     repl = """\
         {% if nav_item.url %}
-          <a href="{{ nav_item.url | url }}"{% if nav_item == page %} class="md-nav__link--active"{% endif %}>
+          <a href="{{ nav_item.url | url }}"{% if nav_item == page %} class="md-nav__link--active"{% endif %} style="display: block">
         {% endif %}
           [...]
         {% if nav_item.url %}</a>{% endif %}
     """
     lines = src.split("\n")
-    for i, line in enumerate(lines):
-        if line.endswith("{{ nav_item.title }}") and "href=" not in lines[i - 1]:
-            lines[i] = _replace_line(lines[i], repl)
+    for i, (line1, line2) in enumerate(zip(lines, lines[1:])):
+        for a, b in (line1, line2), (line2, line1):
+            if "md-nav__icon" in a and b.endswith("{{ nav_item.title }}"):
+                lines[i : i + 2] = (a, _replace_line(b, repl))
+                break
     return "\n".join(lines)
 
 

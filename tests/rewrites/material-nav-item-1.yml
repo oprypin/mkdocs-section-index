@@ -82,12 +82,12 @@ output: |
         <input class="md-nav__toggle md-toggle" data-md-toggle="{{ path }}" type="checkbox" id="{{ path }}">
       {% endif %}
       <label class="md-nav__link" for="{{ path }}">
+        <span class="md-nav__icon md-icon">
         {% if nav_item.url %}
-          <a href="{{ nav_item.url | url }}"{% if nav_item == page %} class="md-nav__link--active"{% endif %}>
+          <a href="{{ nav_item.url | url }}"{% if nav_item == page %} class="md-nav__link--active"{% endif %} style="display: block">
         {% endif %}
           {{ nav_item.title }}
         {% if nav_item.url %}</a>{% endif %}
-        <span class="md-nav__icon md-icon">
           {% include ".icons/material/chevron-right.svg" %}
         </span>
       </label>
@@ -96,11 +96,7 @@ output: |
           <span class="md-nav__icon md-icon">
             {% include ".icons/material/arrow-left.svg" %}
           </span>
-          {% if nav_item.url %}
-            <a href="{{ nav_item.url | url }}"{% if nav_item == page %} class="md-nav__link--active"{% endif %}>
-          {% endif %}
-            {{ nav_item.title }}
-          {% if nav_item.url %}</a>{% endif %}
+          {{ nav_item.title }}
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           {% set base = path %}
@@ -121,12 +117,12 @@ output: |
       {% endif %}
       {% if toc | first is defined %}
         <label class="md-nav__link md-nav__link--active" for="__toc">
+          <span class="md-nav__icon md-icon">
           {% if nav_item.url %}
-            <a href="{{ nav_item.url | url }}"{% if nav_item == page %} class="md-nav__link--active"{% endif %}>
+            <a href="{{ nav_item.url | url }}"{% if nav_item == page %} class="md-nav__link--active"{% endif %} style="display: block">
           {% endif %}
             {{ nav_item.title }}
           {% if nav_item.url %}</a>{% endif %}
-          <span class="md-nav__icon md-icon">
             {% include ".icons/material/table-of-contents.svg" %}
           </span>
         </label>

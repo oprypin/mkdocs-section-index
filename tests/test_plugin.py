@@ -97,7 +97,7 @@ def template_test(directory):
 def test_build_material(tmpdir):
     directory = tmpdir.mkdir("material")
     directory.mkdir("partials").join("nav-item.html").write_text(
-        "\n{{ nav_item.title }}", encoding="utf-8"
+        "md-nav__icon\n{{ nav_item.title }}", encoding="utf-8"
     )
     with template_test(directory) as env:
         env.get_template("partials/nav-item.html")
