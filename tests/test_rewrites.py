@@ -11,3 +11,8 @@ def test_rewrite_readthedocs_base(golden):
 @pytest.mark.golden_test("rewrites/material-nav-item-*.yml")
 def test_rewrite_material_nav_item(golden):
     assert rewrites._transform_material_nav_item_template(golden["input"]) == golden.out["output"]
+
+
+@pytest.mark.golden_test("rewrites/material-tabs-item-*.yml")
+def test_rewrite_material_tabs_item(golden):
+    assert rewrites._transform_material_tabs_item_template(golden["input"]) == golden.out["output"]
