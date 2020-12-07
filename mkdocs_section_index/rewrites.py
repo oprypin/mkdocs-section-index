@@ -44,7 +44,8 @@ class TemplateRewritingLoader(BaseLoader):
 def _transform_material_nav_item_template(src: str) -> str:
     repl = """\
         {% if nav_item.url %}
-          <a href="{{ nav_item.url | url }}" class="md-nav__link{% if nav_item == page %} md-nav__link--active{% endif %}" style="margin: initial; pointer-events: initial">
+          <a href="{{ nav_item.url | url }}" class="md-nav__link{% if nav_item == page %} md-nav__link--active{% endif %}"
+            style="margin: initial; padding: initial; pointer-events: initial">
         {% endif %}
           [...]
         {% if nav_item.url %}</a>{% endif %}
@@ -62,6 +63,9 @@ def _transform_material_tabs_item_template(src: str) -> str:
     return src.replace(
         "(nav_item.children | first).url",
         "(nav_item.url or (nav_item.children | first).url)",
+    ).replace(
+        "if (nav_item.children | first).children",
+        "if (nav_item.children | first).children and not (nav_item.children | first).url",
     )
 
 

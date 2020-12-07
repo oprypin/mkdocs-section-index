@@ -72,7 +72,8 @@ output: |
       <label class="md-nav__link" for="{{ path }}">
         <span class="md-nav__icon md-icon"></span>
         {% if nav_item.url %}
-          <a href="{{ nav_item.url | url }}" class="md-nav__link{% if nav_item == page %} md-nav__link--active{% endif %}" style="margin: initial; pointer-events: initial">
+          <a href="{{ nav_item.url | url }}" class="md-nav__link{% if nav_item == page %} md-nav__link--active{% endif %}"
+            style="margin: initial; padding: initial; pointer-events: initial">
         {% endif %}
           {{ nav_item.title }}
         {% if nav_item.url %}</a>{% endif %}
@@ -81,7 +82,8 @@ output: |
         <label class="md-nav__title" for="{{ path }}">
           <span class="md-nav__icon md-icon"></span>
           {% if nav_item.url %}
-            <a href="{{ nav_item.url | url }}" class="md-nav__link{% if nav_item == page %} md-nav__link--active{% endif %}" style="margin: initial; pointer-events: initial">
+            <a href="{{ nav_item.url | url }}" class="md-nav__link{% if nav_item == page %} md-nav__link--active{% endif %}"
+              style="margin: initial; padding: initial; pointer-events: initial">
           {% endif %}
             {{ nav_item.title }}
           {% if nav_item.url %}</a>{% endif %}
@@ -107,7 +109,8 @@ output: |
         <label class="md-nav__link md-nav__link--active" for="__toc">
           <span class="md-nav__icon md-icon"></span>
           {% if nav_item.url %}
-            <a href="{{ nav_item.url | url }}" class="md-nav__link{% if nav_item == page %} md-nav__link--active{% endif %}" style="margin: initial; pointer-events: initial">
+            <a href="{{ nav_item.url | url }}" class="md-nav__link{% if nav_item == page %} md-nav__link--active{% endif %}"
+              style="margin: initial; padding: initial; pointer-events: initial">
           {% endif %}
             {{ nav_item.title }}
           {% if nav_item.url %}</a>{% endif %}
