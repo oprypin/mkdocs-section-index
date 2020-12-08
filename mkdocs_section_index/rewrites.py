@@ -65,7 +65,7 @@ def _transform_material_tabs_item_template(src: str) -> str:
         "(nav_item.url or (nav_item.children | first).url)",
     ).replace(
         "if (nav_item.children | first).children",
-        "if (nav_item.children | first).children and not (nav_item.children | first).url",
+        "if (nav_item.children | first).children and not nav_item.url",
     )
 
 
