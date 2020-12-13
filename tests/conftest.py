@@ -22,7 +22,7 @@ def http_server(tmp_path_factory):
     directory = tmp_path_factory.mktemp("http_server")
     httpd = http.server.HTTPServer(
         ("localhost", 0),
-        functools.partial(http.server.SimpleHTTPRequestHandler, directory=directory),
+        functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(directory)),
     )
     t = threading.Thread(target=httpd.serve_forever)
     t.daemon = True
