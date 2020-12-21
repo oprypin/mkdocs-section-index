@@ -60,6 +60,10 @@ def _transform_material_nav_item_template(src: str) -> str:
 
 
 def _transform_material_tabs_item_template(src: str) -> str:
+    src = src.replace(
+        "{% if nav_item.children %}", "{% if nav_item.children and not nav_item.url %}"
+    )
+    # The above only for versions > 6.1.7, the below only for versions <= 6.1.7.
     return src.replace(
         "(nav_item.children | first).url",
         "(nav_item.url or (nav_item.children | first).url)",
