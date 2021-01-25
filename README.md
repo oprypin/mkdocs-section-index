@@ -1,9 +1,9 @@
 # mkdocs-section-index
 
-[Plugin][] for [MkDocs][] to allow clickable sections that lead to an index page.
+**[Plugin][] for [MkDocs][] to allow clickable sections that lead to an index page.**
 
 [![PyPI](https://img.shields.io/pypi/v/mkdocs-section-index)](https://pypi.org/project/mkdocs-section-index/)
-[![GitHub](https://img.shields.io/github/license/oprypin/mkdocs-section-index)](LICENSE.md)
+[![GitHub](https://img.shields.io/github/license/oprypin/mkdocs-section-index)](https://github.com/oprypin/mkdocs-section-index/blob/master/LICENSE.md)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/oprypin/mkdocs-section-index/CI)](https://github.com/oprypin/mkdocs-section-index/actions?query=event%3Apush+branch%3Amaster)
 
 ```shell
@@ -61,9 +61,9 @@ To make writing this kind of `nav` more natural ([in YAML there's no better opti
     * [Foo](borgs/foo.md)
 ```
 
-[literate-nav]: https://github.com/oprypin/mkdocs-literate-nav
+[literate-nav]: https://oprypin.github.io/mkdocs-literate-nav/
 
-## [Implementation](mkdocs_section_index/plugin.py)
+## [Implementation](https://github.com/oprypin/mkdocs-section-index/blob/master/mkdocs_section_index/plugin.py)
 
 ### "Protocol"
 
@@ -76,7 +76,7 @@ Normally in MkDocs [`nav`][nav], the items can be one of:
     * ([`children`][children] is always `None`)
 * a [`Link`][Link] (inconsequential for our purposes).
 
-This plugin introduces a [hybrid kind of `Page`](mkdocs_section_index/__init__.py), which has all of these properties:
+This plugin introduces a [hybrid kind of `Page`](https://github.com/oprypin/mkdocs-section-index/blob/master/mkdocs_section_index/__init__.py), which has all of these properties:
 
 * `title`: `str`
 * `url`: `str`
@@ -84,7 +84,7 @@ This plugin introduces a [hybrid kind of `Page`](mkdocs_section_index/__init__.p
 * `is_page` = `True`
 * `is_section` = `True`
 
-Such a special item gets put into a nav in the place of a `Section` which has a `Page` with an intentionally omitted title as its first child. Those two are naturally combined into a special [section-page](mkdocs_section_index/__init__.py) that's a hybrid of the two.
+Such a special item gets put into a nav in the place of a `Section` which has a `Page` with an intentionally omitted title as its first child. Those two are naturally combined into a special [section-page](https://github.com/oprypin/mkdocs-section-index/blob/master/mkdocs_section_index/__init__.py) that's a hybrid of the two.
 
 [nav]: https://www.mkdocs.org/user-guide/custom-themes/#nav
 [Section]: https://www.mkdocs.org/user-guide/custom-themes/#section
@@ -96,7 +96,7 @@ Such a special item gets put into a nav in the place of a `Section` which has a 
 
 Then all that a theme's template needs to do is to meaningfully support such nav items -- ones that have both a `url` and `children`. The item should be directly clickable to go to the corresponding page, and also be able to house sub-items.
 
-Of course, currently templates don't expect such a case; or if they did, it would be purely by chance. So currently this plugin "hacks into" templates of supported themes, [patching their source on the fly](mkdocs_section_index/rewrites.py) to fit its needs. The hope is that, once this plugin gains enough traction, theme authors will be happy to directly support this scenario (which is totally non-intrusive and backwards-compatible), and then the patches could be dropped.
+Of course, currently templates don't expect such a case; or if they did, it would be purely by chance. So currently this plugin "hacks into" templates of supported themes, [patching their source on the fly](https://github.com/oprypin/mkdocs-section-index/blob/master/mkdocs_section_index/rewrites.py) to fit its needs. The hope is that, once this plugin gains enough traction, theme authors will be happy to directly support this scenario (which is totally non-intrusive and backwards-compatible), and then the patches could be dropped.
 
 ### "Alternatives considered"
 
