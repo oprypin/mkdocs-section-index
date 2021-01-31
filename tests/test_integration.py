@@ -46,14 +46,20 @@ def build_site(cfg: str, src_dir: os.PathLike, dest_dir: os.PathLike) -> None:
 
 @pytest.mark.parametrize("use_directory_urls", [True, False])
 @pytest.mark.parametrize(
-    "theme,tabs", [("readthedocs", False), ("material", False), ("material", True)]
+    "theme,features",
+    [
+        ("readthedocs", []),
+        ("material", []),
+        ("material", ["navigation.tabs"]),
+        ("material", ["navigation.sections"]),
+    ],
 )
-def test_nav_basic(http_server, tmpdir, use_directory_urls, theme, tabs):
+def test_nav_basic(http_server, tmpdir, use_directory_urls, theme, features):
     cfg = f"""
         use_directory_urls: {use_directory_urls!r}
         theme:
             name: {theme!r}
-            features: {["navigation.tabs"] if tabs else []}
+            features: {features}
         nav:
             - SectionWithIndex1:
                 - Sub1/index.md
@@ -75,18 +81,25 @@ def test_nav_basic(http_server, tmpdir, use_directory_urls, theme, tabs):
     browser.follow_link(text="SectionWithIndex2")
     assert browser.get_current_page().find_all(text="@Sub2/index.md@")
 
-    assert len(browser.links(text="SectionWithIndex2")) >= 1 + tabs
-    assert len(browser.links(text="SectionWithoutIndex1")) >= tabs
+    assert len(browser.links(text="SectionWithIndex2")) >= 1 + features.count("navigation.tabs")
+    assert len(browser.links(text="SectionWithoutIndex1")) >= features.count("navigation.tabs")
 
 
 @pytest.mark.parametrize("use_directory_urls", [True, False])
-@pytest.mark.parametrize("theme,tabs", [("material", False), ("material", True)])
-def test_nav_nested_tabs(http_server, tmpdir, use_directory_urls, theme, tabs):
+@pytest.mark.parametrize(
+    "theme,features",
+    [
+        ("material", []),
+        ("material", ["navigation.tabs"]),
+        ("material", ["navigation.sections"]),
+    ],
+)
+def test_nav_nested_tabs(http_server, tmpdir, use_directory_urls, theme, features):
     cfg = f"""
         use_directory_urls: {use_directory_urls!r}
         theme:
             name: {theme!r}
-            features: {["navigation.tabs"] if tabs else []}
+            features: {features}
         nav:
             - TabWithoutIndex1:
                 - SectionWithIndex1:
@@ -108,20 +121,27 @@ def test_nav_nested_tabs(http_server, tmpdir, use_directory_urls, theme, tabs):
 
     browser.follow_link(text="SectionWithIndex1")
     assert browser.get_current_page().find_all(text="@Sub1/index.md@")
-    if tabs:
+    if "navigation.tabs" in features:
         browser.follow_link(text="TabWithoutIndex1")
         assert browser.get_current_page().find_all(text="@Sub1/index.md@")
     assert not browser.links(text="SectionWithoutIndex1")
 
 
 @pytest.mark.parametrize("use_directory_urls", [True, False])
-@pytest.mark.parametrize("theme,tabs", [("material", False), ("material", True)])
-def test_nav_nested_tabs_2(http_server, tmpdir, use_directory_urls, theme, tabs):
+@pytest.mark.parametrize(
+    "theme,features",
+    [
+        ("material", []),
+        ("material", ["navigation.tabs"]),
+        ("material", ["navigation.sections"]),
+    ],
+)
+def test_nav_nested_tabs_2(http_server, tmpdir, use_directory_urls, theme, features):
     cfg = f"""
         use_directory_urls: {use_directory_urls!r}
         theme:
             name: {theme!r}
-            features: {["navigation.tabs"] if tabs else []}
+            features: {features}
         nav:
             - TabWithIndex1:
                 - Sub1/index.md
