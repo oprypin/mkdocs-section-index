@@ -40,11 +40,20 @@ class SectionIndexPlugin(BasePlugin):
                         child.parent = page
                     # The page replaces the section; the section will be garbage-collected.
                     items[i] = page
+        self._nav = nav
         return nav
 
     def on_env(self, env: Environment, config, files) -> Environment:
         env.loader = self._loader = rewrites.TemplateRewritingLoader(env.loader)
         return env
+
+    def on_page_context(self, context, page, config, nav):
+        if nav != self._nav:
+            self._nav = nav
+            log.warning(
+                "It seems that the effects of section-index plugin have been lost, because another MkDocs plugin re-wrote the nav! "
+                "Re-order `plugins` in mkdocs.yml so that 'section-index' appears closer to the end."
+            )
 
     def on_post_build(self, config):
         if not self._loader.found_supported_theme:

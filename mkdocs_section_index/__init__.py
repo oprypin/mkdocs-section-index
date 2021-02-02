@@ -16,3 +16,9 @@ class SectionPage(Section, Page):
 
     def __repr__(self):
         return "Section" + Page.__repr__(self)
+
+    def __eq__(self, other):
+        return object.__eq__(self, other)
+
+    def __hash__(self):
+        return object.__hash__(self)
