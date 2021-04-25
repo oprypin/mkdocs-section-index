@@ -25,29 +25,32 @@ class TemplateRewritingLoader(BaseLoader):
 
         if path.endswith("/mkdocs/templates/sitemap.xml"):
             src = _transform_mkdocs_sitemap_template(src)
-        elif path.endswith("/material/partials/nav-item.html"):
-            src = _transform_material_nav_item_template(src)
-        elif path.endswith("/material/partials/tabs-item.html"):
-            src = _transform_material_tabs_item_template(src)
-        elif path.endswith("/themes/readthedocs/base.html"):
-            src = _transform_readthedocs_base_template(src)
         else:
-            return src, filename, uptodate
-        self.found_supported_theme = True
+            if path.endswith("/material/partials/nav-item.html"):
+                src = _transform_material_nav_item_template(src)
+            elif path.endswith("/material/partials/tabs-item.html"):
+                src = _transform_material_tabs_item_template(src)
+            elif path.endswith("/themes/readthedocs/base.html"):
+                src = _transform_readthedocs_base_template(src)
+            else:
+                return src, filename, uptodate
+            self.found_supported_theme = True
 
         if old_src == src:
             log.warning(
                 f"Failed to adapt the theme file '{filename}'. "
                 f"This is likely a bug in mkdocs-section-index, and things won't work as expected."
             )
-        return src, filename, uptodate
+        return src or old_src, filename, uptodate
 
 
-def _transform_mkdocs_sitemap_template(src: str) -> str:
-    return src.replace(
-        "{%- else %}",
-        "{%- endif %}{% if item.url %}",
-    )
+def _transform_mkdocs_sitemap_template(src: str) -> Optional[str]:
+    if " in pages " not in src:
+        # The below only for versions <= 1.1.2.
+        return src.replace(
+            "{%- else %}",
+            "{%- endif %}{% if item.url %}",
+        )
 
 
 def _transform_material_nav_item_template(src: str) -> str:
