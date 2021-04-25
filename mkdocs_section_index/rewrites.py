@@ -42,6 +42,11 @@ class TemplateRewritingLoader(BaseLoader):
 
 
 def _transform_material_nav_item_template(src: str) -> str:
+    src = src.replace(
+        "{% if nav_item.children %}",
+        "{% if nav_item.children and not ('navigation.tabs' in features and level == 1 and not nav_item.active and nav_item.url) %}",
+    )
+
     repl = """\
         {% if nav_item.url %}
           <a href="{{ nav_item.url | url }}" class="md-nav__link{% if nav_item == page %} md-nav__link--active{% endif %}"

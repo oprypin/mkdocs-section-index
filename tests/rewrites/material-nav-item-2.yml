@@ -65,7 +65,7 @@ output: |
   {% if nav_item.active %}
     {% set class = "md-nav__item md-nav__item--active" %}
   {% endif %}
-  {% if nav_item.children %}
+  {% if nav_item.children and not ('navigation.tabs' in features and level == 1 and not nav_item.active and nav_item.url) %}
     <li class="{{ class }} md-nav__item--nested">
       {% set checked = "checked" if nav_item.active %}
       <input class="md-nav__toggle md-toggle" data-md-toggle="{{ path }}" type="checkbox" id="{{ path }}" {{ checked }}>
