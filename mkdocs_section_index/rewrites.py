@@ -23,7 +23,9 @@ class TemplateRewritingLoader(BaseLoader):
         old_src = src
         path = pathlib.Path(filename).as_posix()
 
-        if path.endswith("/material/partials/nav-item.html"):
+        if path.endswith("/mkdocs/templates/sitemap.xml"):
+            src = _transform_mkdocs_sitemap_template(src)
+        elif path.endswith("/material/partials/nav-item.html"):
             src = _transform_material_nav_item_template(src)
         elif path.endswith("/material/partials/tabs-item.html"):
             src = _transform_material_tabs_item_template(src)
@@ -39,6 +41,13 @@ class TemplateRewritingLoader(BaseLoader):
                 f"This is likely a bug in mkdocs-section-index, and things won't work as expected."
             )
         return src, filename, uptodate
+
+
+def _transform_mkdocs_sitemap_template(src: str) -> str:
+    return src.replace(
+        "{%- else %}",
+        "{%- endif %}{% if item.url %}",
+    )
 
 
 def _transform_material_nav_item_template(src: str) -> str:
