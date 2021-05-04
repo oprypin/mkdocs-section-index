@@ -13,8 +13,8 @@ section-index = "mkdocs_section_index.plugin:SectionIndexPlugin"
 
 [tool.poetry.dependencies]
 python = "^3.6"
-mkdocs = "^1.0"
-dataclasses = {version = "^0.7", python = "<3.7"}
+mkdocs = "^1.0.3"
+dataclasses = {version = ">=0.7", python = "<3.7"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.1.2"
