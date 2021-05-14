@@ -1,6 +1,6 @@
 # mkdocs-section-index
 
-**[Plugin][] for [MkDocs][] to allow clickable sections that lead to an index page.**
+**[Plugin][] for [MkDocs][] to allow clickable sections that lead to an index page**
 
 [![PyPI](https://img.shields.io/pypi/v/mkdocs-section-index)](https://pypi.org/project/mkdocs-section-index/)
 [![GitHub](https://img.shields.io/github/license/oprypin/mkdocs-section-index)](https://github.com/oprypin/mkdocs-section-index/blob/master/LICENSE.md)

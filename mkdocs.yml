@@ -1,4 +1,4 @@
-site_name: MkDocs Plugins
+site_name: "mkdocs-section-index"
 site_url: "https://oprypin.github.io/mkdocs-section-index"
 repo_url: "https://github.com/oprypin/mkdocs-section-index"
 edit_uri: blob/master/docs/
