@@ -1,5 +1,6 @@
 import collections
 import logging
+import os
 
 import mkdocs.utils
 from jinja2 import Environment
@@ -15,7 +16,29 @@ log = logging.getLogger(f"mkdocs.plugins.{__name__}")
 log.addFilter(mkdocs.utils.warning_filter)
 
 
+def move_second_before_first(first, second, before="previous_page", after="next_page"):
+    """
+    Move second element before first in a doubly linked list.
+    """
+    el_before_second = getattr(second, before)
+    el_after_second = getattr(second, after)
+    el_before_first = getattr(first, before)
+
+    # now fix links from left to right
+    if el_before_first:
+        setattr(el_before_first, after, second)
+    setattr(second, before, el_before_first)
+    setattr(second, after, first)
+    setattr(first, before, second)
+    if el_before_second:
+        setattr(el_before_second, after, el_after_second)
+    if el_after_second:
+        setattr(el_after_second, before, el_before_second)
+
+
 class SectionIndexPlugin(BasePlugin):
+    config_scheme = (("index_file", mkdocs.config.config_options.Type(str, default=None)),)
+
     def on_nav(self, nav: Navigation, config, files) -> Navigation:
         todo = collections.deque((nav.items,))
         while todo:
@@ -24,7 +47,17 @@ class SectionIndexPlugin(BasePlugin):
                 if not isinstance(section, Section) or not section.children:
                     continue
                 todo.append(section.children)
-                page = section.children[0]
+                index_file = self.config["index_file"]
+                if index_file is None:
+                    page_index = 0
+                    page = section.children[0]
+                else:
+                    for page_index, child in enumerate(section.children):
+                        if os.path.basename(child.file.src_path) == index_file:
+                            page = child
+                            break
+                    else:
+                        continue
                 if not isinstance(page, Page):
                     continue
                 assert not page.children
@@ -34,12 +67,16 @@ class SectionIndexPlugin(BasePlugin):
                     page.is_section = page.is_page = True
                     page.title = section.title
                     # The page leaves the section but takes over children that used to be its peers.
-                    section.children.pop(0)
+                    section.children.pop(page_index)
                     page.children = section.children
                     for child in page.children:
                         child.parent = page
+                    # Correct order if changed
+                    if page_index > 0:
+                        move_second_before_first(page.children[0], page)
                     # The page replaces the section; the section will be garbage-collected.
                     items[i] = page
+
         self._nav = nav
         return nav
 
