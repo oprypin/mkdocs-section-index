@@ -20,16 +20,23 @@ def move_second_before_first(first, second, before="previous_page", after="next_
     """
     Move second element before first in a doubly linked list.
     """
+    if first == second:
+        return
+    el_before_first = getattr(first, before)
+    if el_before_first == second:
+        # already correct, also invalid for later logic
+        return
     el_before_second = getattr(second, before)
     el_after_second = getattr(second, after)
-    el_before_first = getattr(first, before)
 
-    # now fix links from left to right
+    # fix links where second was inserted
     if el_before_first:
         setattr(el_before_first, after, second)
     setattr(second, before, el_before_first)
     setattr(second, after, first)
     setattr(first, before, second)
+
+    # fix links where second was removed
     if el_before_second:
         setattr(el_before_second, after, el_after_second)
     if el_after_second:
