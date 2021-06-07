@@ -1,4 +1,5 @@
 site_name: mkdocs-section-index
+site_url: 'https://example.org'
 
 nav:
   - Frob: index.md
