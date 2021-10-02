@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mkdocs-section-index"
-version = "0.3.1"
+version = "0.3.2"
 description = "MkDocs plugin to allow clickable sections that lead to an index page"
 authors = ["Oleh Prypin <oleh@pryp.in>"]
 license = "MIT"
