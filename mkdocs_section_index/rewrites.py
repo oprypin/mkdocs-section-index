@@ -54,6 +54,13 @@ def _transform_mkdocs_sitemap_template(src: str) -> Optional[str]:
 
 
 def _transform_material_nav_item_template(src: str) -> str:
+    if "navigation.indexes" in src:
+        return src.replace(
+            "{% set indexes = [] %}",
+            "{% set indexes = [nav_item] if nav_item.url else [] %}",
+        )
+
+    # The above only for versions >= 7.3, the below only for versions < 7.3.
     src = src.replace(
         "{% if nav_item.children %}",
         "{% if nav_item.children and not ('navigation.tabs' in features and level == 1 and not nav_item.active and nav_item.url) %}",
