@@ -3,7 +3,7 @@ on:
   push:
   pull_request:
   schedule:
-    - cron: '0 6 * * 6'
+    - cron: '0 6 * * *'
 defaults:
   run:
     shell: bash
