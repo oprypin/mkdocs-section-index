@@ -65,7 +65,7 @@ def test_nav_basic(http_server, tmpdir, use_directory_urls, theme, features):
                 - Sub1/index.md
                 - Aaa: Sub1/aaa.md
             - SectionWithIndex2:
-                - Sub2/index.md
+                - Sub2/home.md
                 - Bbb: Sub1/bbb.md
             - SectionWithoutIndex1:
                 - Ccc: Sub2/ccc.md
@@ -79,10 +79,13 @@ def test_nav_basic(http_server, tmpdir, use_directory_urls, theme, features):
     assert browser.get_current_page().find_all(text="@Sub1/index.md@")
 
     browser.follow_link(text="SectionWithIndex2")
-    assert browser.get_current_page().find_all(text="@Sub2/index.md@")
+    assert browser.get_current_page().find_all(text="@Sub2/home.md@")
 
     assert len(browser.links(text="SectionWithIndex2")) >= 1 + features.count("navigation.tabs")
     assert len(browser.links(text="SectionWithoutIndex1")) >= features.count("navigation.tabs")
+
+    browser.follow_link(text="Bbb")
+    assert browser.get_current_page().find_all(text="@Sub1/bbb.md@")
 
 
 @pytest.mark.parametrize("use_directory_urls", [True, False])
@@ -106,7 +109,7 @@ def test_nav_nested_tabs(http_server, tmpdir, use_directory_urls, theme, feature
                     - Sub1/index.md
                     - Aaa: Sub1/aaa.md
                 - SectionWithIndex2:
-                    - Sub2/index.md
+                    - Sub2/home.md
                     - Bbb: Sub1/bbb.md
             - TabWithoutIndex2:
                 - SectionWithoutIndex1:
@@ -121,6 +124,9 @@ def test_nav_nested_tabs(http_server, tmpdir, use_directory_urls, theme, feature
 
     browser.follow_link(text="SectionWithIndex1")
     assert browser.get_current_page().find_all(text="@Sub1/index.md@")
+    browser.follow_link(text="SectionWithIndex2")
+    assert browser.get_current_page().find_all(text="@Sub2/home.md@")
+
     if "navigation.tabs" in features:
         browser.follow_link(text="TabWithoutIndex1")
         assert browser.get_current_page().find_all(text="@Sub1/index.md@")
