@@ -20,5 +20,8 @@ class SectionPage(Section, Page):
     def __eq__(self, other):
         return object.__eq__(self, other)
 
+    def __ne__(self, other):
+        return not (self == other)
+
     def __hash__(self):
         return object.__hash__(self)
