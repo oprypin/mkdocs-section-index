@@ -131,7 +131,7 @@ output: |
           {% set class = "md-nav__link--active" if index == page %}
           <div class="md-nav__link md-nav__link--index {{ class }}">
             <a href="{{ index.url | url }}">{{ nav_item.title }}</a>
-            {% if nav_item.children | length > 1 %}
+            {% if nav_item.children %}
               <label for="{{ path }}">
                 <span class="md-nav__icon md-icon"></span>
               </label>

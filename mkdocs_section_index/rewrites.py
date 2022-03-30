@@ -58,6 +58,9 @@ def _transform_material_nav_item_template(src: str) -> str:
         return src.replace(
             "{% set indexes = [] %}",
             "{% set indexes = [nav_item] if nav_item.url else [] %}",
+        ).replace(
+            "{% if nav_item.children | length > 1 %}",
+            "{% if nav_item.children %}",
         )
 
     # The above only for versions >= 7.3, the below only for versions < 7.3.
