@@ -1,7 +1,7 @@
 import logging
 import pathlib
 import textwrap
-from typing import Optional, Tuple
+from typing import Callable, Optional, Tuple
 
 import mkdocs.utils
 from jinja2 import BaseLoader, Environment
@@ -18,9 +18,13 @@ class TemplateRewritingLoader(BaseLoader):
         self.loader = loader
         self.found_supported_theme = False
 
-    def get_source(self, environment: Environment, template: str) -> Tuple[str, str, bool]:
+    def get_source(
+        self, environment: Environment, template: str
+    ) -> Tuple[str, str, Optional[Callable[[], bool]]]:
+        src: Optional[str]
         src, filename, uptodate = self.loader.get_source(environment, template)
         old_src = src
+        assert filename is not None
         path = pathlib.Path(filename).as_posix()
 
         if path.endswith("/mkdocs/templates/sitemap.xml"):
@@ -51,6 +55,7 @@ def _transform_mkdocs_sitemap_template(src: str) -> Optional[str]:
             "{%- else %}",
             "{%- endif %}{% if item.url %}",
         )
+    return None
 
 
 def _transform_material_nav_item_template(src: str) -> str:

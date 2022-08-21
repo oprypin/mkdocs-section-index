@@ -31,6 +31,7 @@ class SectionIndexPlugin(BasePlugin):
                 if not page.title and page.url:
                     # The page becomes a section-page.
                     page.__class__ = SectionPage
+                    assert isinstance(page, SectionPage)
                     page.is_section = page.is_page = True
                     page.title = section.title
                     # The page leaves the section but takes over children that used to be its peers.
@@ -44,6 +45,7 @@ class SectionIndexPlugin(BasePlugin):
         return nav
 
     def on_env(self, env: Environment, config, files) -> Environment:
+        assert env.loader is not None
         env.loader = self._loader = rewrites.TemplateRewritingLoader(env.loader)
         return env
 
