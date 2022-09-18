@@ -12,7 +12,7 @@ with_groups() {
 "$@" isort -q mkdocs_section_index tests
 "$@" black -q mkdocs_section_index tests
 "$@" pytest -q
-python -c 'import sys, os; sys.exit((3,8) <= sys.version_info < (3,10) and os.name == "posix")' ||
+python -c 'import sys, os; sys.exit((3,8) <= sys.version_info < (3,11) and os.name == "posix")' ||
 "$@" pytype mkdocs_section_index
 
 "$@" mkdocs build -f example/mkdocs.yml --strict
