@@ -1,7 +1,9 @@
+from __future__ import annotations
+
 import logging
 import pathlib
 import textwrap
-from typing import Callable, Optional, Tuple
+from typing import Callable
 
 import mkdocs.utils
 from jinja2 import BaseLoader, Environment
@@ -20,8 +22,8 @@ class TemplateRewritingLoader(BaseLoader):
 
     def get_source(
         self, environment: Environment, template: str
-    ) -> Tuple[str, str, Optional[Callable[[], bool]]]:
-        src: Optional[str]
+    ) -> tuple[str, str, Callable[[], bool] | None]:
+        src: str | None
         src, filename, uptodate = self.loader.get_source(environment, template)
         old_src = src
         assert filename is not None
@@ -48,7 +50,7 @@ class TemplateRewritingLoader(BaseLoader):
         return src or old_src, filename, uptodate
 
 
-def _transform_mkdocs_sitemap_template(src: str) -> Optional[str]:
+def _transform_mkdocs_sitemap_template(src: str) -> str | None:
     if " in pages " not in src:
         # The below only for versions <= 1.1.2.
         return src.replace(
@@ -124,7 +126,7 @@ def _transform_readthedocs_base_template(src: str) -> str:
     return "\n".join(lines)
 
 
-def _replace_line(line: str, wrapper: str, new_line: Optional[str] = None) -> str:
+def _replace_line(line: str, wrapper: str, new_line: str | None = None) -> str:
     leading_space = line[: -len(line.lstrip())]
     if new_line is None:
         new_line = line.lstrip()

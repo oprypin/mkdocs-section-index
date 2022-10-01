@@ -1,4 +1,4 @@
-from typing import List, Union
+from __future__ import annotations
 
 from mkdocs.config import Config
 from mkdocs.structure.files import File
@@ -10,7 +10,7 @@ __all__ = ["SectionPage"]
 
 class SectionPage(Section, Page):  # type: ignore[misc]
     def __init__(
-        self, title: str, file: File, config: Config, children: List[Union[Page, Section, Link]]
+        self, title: str, file: File, config: Config, children: list[Page | Section | Link]
     ):
         Page.__init__(self, title=title, file=file, config=config)
         Section.__init__(self, title=title, children=children)
