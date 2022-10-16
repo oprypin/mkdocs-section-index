@@ -5,14 +5,12 @@ import pathlib
 import textwrap
 from typing import Callable
 
-import mkdocs.utils
 from jinja2 import BaseLoader, Environment
 
 __all__ = ["TemplateRewritingLoader"]
 
 
 log = logging.getLogger(f"mkdocs.plugins.{__name__}")
-log.addFilter(mkdocs.utils.warning_filter)
 
 
 class TemplateRewritingLoader(BaseLoader):

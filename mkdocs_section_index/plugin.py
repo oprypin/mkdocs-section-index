@@ -3,7 +3,6 @@ from __future__ import annotations
 import collections
 import logging
 
-import mkdocs.utils
 from jinja2 import Environment
 from mkdocs.plugins import BasePlugin
 from mkdocs.structure.nav import Navigation, Section
@@ -14,7 +13,6 @@ from . import SectionPage, rewrites
 __all__ = ["SectionIndexPlugin"]
 
 log = logging.getLogger(f"mkdocs.plugins.{__name__}")
-log.addFilter(mkdocs.utils.warning_filter)
 
 
 class SectionIndexPlugin(BasePlugin):
