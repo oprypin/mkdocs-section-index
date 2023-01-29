@@ -17,7 +17,7 @@ class SectionPage(Section, Page):  # type: ignore[misc]
         Section.__init__(self, title=title, children=children)
         self.is_section = self.is_page = True
 
-    active = Page.active
+    active = Page.active  # type: ignore
 
     def __repr__(self):
         return "Section" + Page.__repr__(self)
