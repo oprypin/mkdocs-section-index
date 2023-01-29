@@ -5,7 +5,7 @@ from mkdocs.structure.files import File
 from mkdocs.structure.nav import Link, Section
 from mkdocs.structure.pages import Page
 
-__version__ = "0.3.4"
+__version__ = "0.3.5"
 __all__ = ["SectionPage"]
 
 
