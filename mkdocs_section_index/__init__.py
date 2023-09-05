@@ -20,7 +20,10 @@ class SectionPage(Section, Page):  # type: ignore[misc]
     active = Page.active  # type: ignore
 
     def __repr__(self):
-        return "Section" + Page.__repr__(self)
+        result = Page.__repr__(self)
+        if not result.startswith("Section"):
+            result = "Section" + result
+        return result
 
     def __eq__(self, other):
         return object.__eq__(self, other)
