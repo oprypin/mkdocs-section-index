@@ -80,7 +80,7 @@ def test_nav_repr(golden, tmpdir):
 
 @contextlib.contextmanager
 def template_test(directory):
-    config = dict()
+    config = {}
     files = FakeFiles(config)
     env = Environment(loader=FileSystemLoader(directory))
     env.filters["url"] = lambda s: s

@@ -2,13 +2,16 @@ from __future__ import annotations
 
 import collections
 import logging
+from typing import TYPE_CHECKING
 
-from jinja2 import Environment
 from mkdocs.plugins import BasePlugin
 from mkdocs.structure.nav import Navigation, Section
 from mkdocs.structure.pages import Page
 
 from . import SectionPage, rewrites
+
+if TYPE_CHECKING:
+    from jinja2 import Environment
 
 __all__ = ["SectionIndexPlugin"]
 
