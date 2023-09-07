@@ -63,6 +63,21 @@ To make writing this kind of `nav` more natural ([in YAML there's no better opti
 
 [literate-nav]: https://oprypin.github.io/mkdocs-literate-nav/
 
+### Specifying the page to use for the section
+
+By default the first child is used as the section page, even if there is no
+`index.md`. If you want to change the page to use add the `index_file` config
+option:
+
+```yaml
+plugins:
+  - section-index:
+      index_file: index.md
+```
+
+The value is the name of the page to use, in this case `index.md`. If a child
+with that name does not exist no section page is generated.
+
 ## [Implementation](https://github.com/oprypin/mkdocs-section-index/blob/master/mkdocs_section_index/plugin.py)
 
 ### "Protocol"
