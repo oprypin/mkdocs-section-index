@@ -64,6 +64,7 @@ dependencies = [
     "testfixtures >=6.15.0",
     "MechanicalSoup >=0.12.0",
     "mkdocs-material >=6.1.5",
+    "mkdocs-nature >=0.5",
     #min "jinja2 >=2.11.0",
     #min "markupsafe >=2.0.1",
 ]

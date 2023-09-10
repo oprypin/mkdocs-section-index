@@ -36,6 +36,8 @@ class TemplateRewritingLoader(BaseLoader):
                 src = _transform_material_tabs_item_template(src)
             elif path.endswith("/themes/readthedocs/base.html"):
                 src = _transform_readthedocs_base_template(src)
+            elif path.endswith("/nature/base.html"):
+                src = None  # Just works!
             else:
                 return src, filename, uptodate
             self.found_supported_theme = True

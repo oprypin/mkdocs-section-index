@@ -44,6 +44,7 @@ Currently supported [themes][] are:
 
 * [material](https://github.com/squidfunk/mkdocs-material)
 * [readthedocs](https://www.mkdocs.org/user-guide/styling-your-docs/#readthedocs)
+* [nature](https://github.com/waylan/mkdocs-nature)
 
 [themes]: https://github.com/mkdocs/mkdocs/wiki/MkDocs-Themes
 
