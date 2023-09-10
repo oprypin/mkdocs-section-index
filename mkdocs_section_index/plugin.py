@@ -37,6 +37,7 @@ class SectionIndexPlugin(BasePlugin):
                     assert isinstance(page, SectionPage)
                     page.is_section = page.is_page = True
                     page.title = section.title
+                    page.parent = section.parent
                     # The page leaves the section but takes over children that used to be its peers.
                     section.children.pop(0)
                     page.children = section.children
