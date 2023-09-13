@@ -3,7 +3,7 @@ from __future__ import annotations
 from mkdocs.structure.nav import Section
 from mkdocs.structure.pages import Page
 
-__version__ = "0.3.6"
+__version__ = "0.3.7"
 __all__ = ["SectionPage"]
 
 
