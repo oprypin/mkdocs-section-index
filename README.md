@@ -29,6 +29,7 @@ nav:
     - Foo: borgs/foo.md
 
 plugins:
+  - search
   - section-index
 ```
 
