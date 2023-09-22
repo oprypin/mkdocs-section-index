@@ -30,9 +30,20 @@ class TemplateRewritingLoader(BaseLoader):
         if path.endswith("/mkdocs/templates/sitemap.xml"):
             src = _transform_mkdocs_sitemap_template(src)
         else:
-            if path.endswith("/material/partials/nav-item.html"):
+            # the second path is used in MkDocs-Material >= 9.4
+            if path.endswith(
+                (
+                    "/material/partials/nav-item.html",
+                    "/material/templates/partials/nav-item.html",
+                ),
+            ):
                 src = _transform_material_nav_item_template(src)
-            elif path.endswith("/material/partials/tabs-item.html"):
+            elif path.endswith(
+                (
+                    "/material/partials/tabs-item.html",
+                    "/material/templates/partials/tabs-item.html",
+                ),
+            ):
                 src = _transform_material_tabs_item_template(src)
             elif path.endswith("/themes/readthedocs/base.html"):
                 src = _transform_readthedocs_base_template(src)
