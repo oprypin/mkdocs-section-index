@@ -103,7 +103,7 @@ format = [
 [tool.hatch.envs.docs]
 detached = true
 dependencies = [
-    "mkdocs >=1.2",
+    "mkdocs >=1.5",
     "mkdocs-material >=7.3.6",
 ]
 
