@@ -77,7 +77,7 @@ dependencies = [
 [tool.hatch.envs.test.scripts]
 test = [
     "pytest -q",
-    "mkdocs build -f example/mkdocs.yml --strict",
+    "bash .tools/test.sh",
 ]
 
 [tool.hatch.envs.types]

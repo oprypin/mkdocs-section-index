@@ -3,7 +3,7 @@
 **[Plugin][] for [MkDocs][] to allow clickable sections that lead to an index page**
 
 [![PyPI](https://img.shields.io/pypi/v/mkdocs-section-index)](https://pypi.org/project/mkdocs-section-index/)
-[![GitHub](https://img.shields.io/github/license/oprypin/mkdocs-section-index)](https://github.com/oprypin/mkdocs-section-index/blob/master/LICENSE.md)
+[![License](https://img.shields.io/github/license/oprypin/mkdocs-section-index)](https://github.com/oprypin/mkdocs-section-index/blob/master/LICENSE.md)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/oprypin/mkdocs-section-index/ci.yml.svg)](https://github.com/oprypin/mkdocs-section-index/actions?query=event%3Apush+branch%3Amaster)
 
 ```shell
