@@ -13,7 +13,7 @@ class SectionPage(Section, Page):  # type: ignore[misc]
         Section.__init__(self, title=title, children=children)
         self.is_section = self.is_page = True
 
-    active = Page.active  # type: ignore
+    active = Page.active  # type: ignore[assignment]
 
     def __repr__(self):
         result = Page.__repr__(self)
