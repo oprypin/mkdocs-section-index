@@ -62,13 +62,13 @@ class TemplateRewritingLoader(BaseLoader):
 
 
 def _transform_mkdocs_sitemap_template(src: str) -> str | None:
-    if " in pages " not in src:
-        # The below only for versions <= 1.1.2.
-        return src.replace(
-            "{%- else %}",
-            "{%- endif %}{% if item.url %}",
-        )
-    return None
+    if " in pages " in src:
+        return None
+    # The below only for versions <= 1.1.2.
+    return src.replace(
+        "{%- else %}",
+        "{%- endif %}{% if item.url %}",
+    )
 
 
 def _transform_material_nav_item_template(src: str) -> str:
@@ -120,7 +120,10 @@ def _transform_material_tabs_item_template(src: str) -> str:
     )
 
 
-def _transform_readthedocs_base_template(src: str) -> str:
+def _transform_readthedocs_base_template(src: str) -> str | None:
+    if " if nav_item.is_page " in src:
+        return None
+    # The below only for versions < 1.6:
     repl = """\
         {% if nav_item.url %}
             <ul><li{% if nav_item == page %} class="current"{% endif %}>
