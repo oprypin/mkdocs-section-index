@@ -13,6 +13,7 @@ from . import SectionPage, rewrites
 if TYPE_CHECKING:
     from jinja2 import Environment
 
+
 __all__ = ["SectionIndexPlugin"]
 
 log = logging.getLogger(f"mkdocs.plugins.{__name__}")

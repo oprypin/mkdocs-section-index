@@ -62,6 +62,7 @@ class FakeFiles:
                 dest_dir=self.config.get("site_dir", ""),
                 use_directory_urls=self.config.get("use_directory_urls", True),
             )
+        return None
 
     @classmethod
     def documentation_pages(cls):
