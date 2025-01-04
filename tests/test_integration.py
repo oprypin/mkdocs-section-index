@@ -46,7 +46,7 @@ def build_site(cfg: str, src_dir: os.PathLike, dest_dir: os.PathLike) -> None:
 
 @pytest.mark.parametrize("use_directory_urls", [True, False])
 @pytest.mark.parametrize(
-    "theme,features",
+    ("theme", "features"),
     [
         ("readthedocs", []),
         ("material", []),
@@ -90,7 +90,7 @@ def test_nav_basic(http_server, tmpdir, use_directory_urls, theme, features):
 
 @pytest.mark.parametrize("use_directory_urls", [True, False])
 @pytest.mark.parametrize(
-    "theme,features",
+    ("theme", "features"),
     [
         ("material", []),
         ("material", ["navigation.tabs"]),
@@ -135,7 +135,7 @@ def test_nav_nested_tabs(http_server, tmpdir, use_directory_urls, theme, feature
 
 @pytest.mark.parametrize("use_directory_urls", [True, False])
 @pytest.mark.parametrize(
-    "theme,features",
+    ("theme", "features"),
     [
         ("material", []),
         ("material", ["navigation.tabs"]),
