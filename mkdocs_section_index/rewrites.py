@@ -73,12 +73,19 @@ def _transform_mkdocs_sitemap_template(src: str) -> str | None:
 
 def _transform_material_nav_item_template(src: str) -> str:
     if "navigation.indexes" in src:
-        return src.replace(
-            "{% set indexes = [] %}",
-            "{% set indexes = [nav_item] if nav_item.url else [] %}",
-        ).replace(
-            "{% if nav_item.children | length > 1 %}",
-            "{% if nav_item.children %}",
+        return (
+            src.replace(  # For versions >= 9.6.10
+                "_ = namespace(index = none)",
+                "_ = namespace(index = nav_item if nav_item.url else none)",
+            )
+            .replace(  # For versions < 9.6.10
+                "{% set indexes = [] %}",
+                "{% set indexes = [nav_item] if nav_item.url else [] %}",
+            )
+            .replace(
+                "{% if nav_item.children | length > 1 %}",
+                "{% if nav_item.children %}",
+            )
         )
 
     # The above only for versions >= 7.3, the below only for versions < 7.3.
@@ -105,10 +112,14 @@ def _transform_material_nav_item_template(src: str) -> str:
 
 
 def _transform_material_tabs_item_template(src: str) -> str:
-    src = src.replace("{% if first.children %}", "{% if first.children and not first.url %}")
+    src = src.replace(
+        "{% if first.children %}",
+        "{% if first.children and not first.url %}",
+    )
     # The above only for versions >= 9.2
     src = src.replace(
-        "{% if nav_item.children %}", "{% if nav_item.children and not nav_item.url %}"
+        "{% if nav_item.children %}",
+        "{% if nav_item.children and not nav_item.url %}",
     )
     # The above only for versions > 6.1.7, the below only for versions <= 6.1.7.
     return src.replace(
