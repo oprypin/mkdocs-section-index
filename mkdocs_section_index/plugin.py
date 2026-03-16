@@ -13,12 +13,13 @@ from . import SectionPage, rewrites
 if TYPE_CHECKING:
     from jinja2 import Environment
 
+try:
+    import properdocs.replacement_warning
 
-import properdocs.replacement_warning
-
-# Warn when this plugin is being used from the mkdocs executable.
-properdocs.replacement_warning.setup()
-
+    # Warn when this plugin is being used from the mkdocs executable.
+    properdocs.replacement_warning.setup()
+except ImportError:
+    pass
 
 __all__ = ["SectionIndexPlugin"]
 
