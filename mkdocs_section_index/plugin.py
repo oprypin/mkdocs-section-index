@@ -14,6 +14,12 @@ if TYPE_CHECKING:
     from jinja2 import Environment
 
 
+import properdocs.replacement_warning
+
+# Warn when this plugin is being used from the mkdocs executable.
+properdocs.replacement_warning.setup()
+
+
 __all__ = ["SectionIndexPlugin"]
 
 log = logging.getLogger(f"mkdocs.plugins.{__name__}")
