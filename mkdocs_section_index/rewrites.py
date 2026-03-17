@@ -1,9 +1,10 @@
 from __future__ import annotations
 
+import itertools
 import logging
 import pathlib
 import textwrap
-from typing import Callable
+from collections.abc import Callable
 
 from jinja2 import BaseLoader, Environment
 
@@ -103,7 +104,7 @@ def _transform_material_nav_item_template(src: str) -> str:
         {% if nav_item.url %}</a>{% endif %}
     """
     lines = src.split("\n")
-    for i, (line1, line2) in enumerate(zip(lines, lines[1:])):
+    for i, (line1, line2) in enumerate(itertools.pairwise(lines)):
         for a, b in (line1, line2), (line2, line1):
             if "md-nav__icon" in a and b.endswith("{{ nav_item.title }}"):
                 lines[i : i + 2] = (a, _replace_line(b, repl))
