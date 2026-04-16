@@ -13,11 +13,11 @@ pip install mkdocs-section-index
 [mkdocs]: https://www.mkdocs.org/
 [plugin]: https://www.mkdocs.org/user-guide/plugins/
 
-## [Example](example/)
+## [Example](https://github.com/oprypin/mkdocs-section-index/tree/master/example/)
 
 ![Screencast with comparison](https://user-images.githubusercontent.com/371383/99844559-8c4caa00-2b73-11eb-9e97-fad82447746c.gif)
 
-With this `nav` in *mkdocs.yml* (or without `nav` but with [an equivalent directory structure](example/docs/)):
+With this `nav` in *mkdocs.yml* (or without `nav` but with [an equivalent directory structure](https://github.com/oprypin/mkdocs-section-index/tree/master/example/docs)):
 
 ```yaml
 nav:
