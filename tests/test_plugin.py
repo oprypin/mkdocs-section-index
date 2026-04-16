@@ -39,7 +39,7 @@ def test_real_example(tmpdir, directory_urls, nav):
     assert sec.is_section
     assert sec.is_page
     assert sec.title == "Borgs"
-    assert sec.url in ("borgs/", "borgs/index.html")
+    assert sec.url in {"borgs/", "borgs/index.html"}
     assert sec.file.name == "index"
 
     assert len(sec.children) == 2
@@ -83,7 +83,7 @@ def test_nav_repr(golden, tmpdir):
 def template_test(directory):
     config = {}
     files = FakeFiles(config)
-    env = Environment(loader=FileSystemLoader(directory))
+    env = Environment(loader=FileSystemLoader(directory))  # noqa: S701
     env.filters["url"] = lambda s: s
 
     plg = plugin.SectionIndexPlugin()

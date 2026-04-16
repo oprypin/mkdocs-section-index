@@ -32,15 +32,15 @@ def build_site(cfg: str, src_dir: os.PathLike, dest_dir: os.PathLike) -> None:
 
     docs_dir = Path(src_dir, "docs")
     docs_dir.mkdir()
-    Path(docs_dir, "README.md").write_text("")
+    Path(docs_dir, "README.md").write_text("", encoding="utf-8")
 
     for rel_path in re.findall(r"\b[^ ]+\.md$", cfg, flags=re.MULTILINE):
         path = Path(docs_dir, rel_path)
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(f"@{rel_path}@")
+        path.write_text(f"@{rel_path}@", encoding="utf-8")
 
     f = Path(src_dir, "mkdocs.yml")
-    f.write_text(cfg)
+    f.write_text(cfg, encoding="utf-8")
     build(load_config(str(f)))
 
 
