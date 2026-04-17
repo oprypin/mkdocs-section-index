@@ -44,6 +44,7 @@ This plugin requires per-theme overrides (implemented within the plugin), or [su
 Currently supported [themes][] are:
 
 * [material](https://github.com/squidfunk/mkdocs-material)
+* [materialx](https://github.com/jaywhj/mkdocs-materialx)
 * [readthedocs](https://www.mkdocs.org/user-guide/styling-your-docs/#readthedocs)
 * [nature](https://github.com/waylan/mkdocs-nature)
 
