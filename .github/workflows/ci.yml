@@ -37,10 +37,10 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: ${{matrix.python}}
-      - name: Pin to lowest versions
-        if: matrix.versions == 'minimal'
-        run: |
-          sed -i -E -e '/properdocs >=/d' -e 's/#min //; s/\b >=([0-9])/ ==\1/' pyproject.toml
+      # - name: Pin to lowest versions
+      #   if: matrix.versions == 'minimal'
+      #   run: |
+      #     sed -i -E -e '/properdocs >=/d' -e 's/#min //; s/\b >=([0-9])/ ==\1/' pyproject.toml
       - name: Install Hatch
         run: |
           pip install hatch

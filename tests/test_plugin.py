@@ -21,7 +21,9 @@ def test_real_example(tmpdir, directory_urls, nav):
         docs_dir=str(example_dir / "docs"),
         site_dir=tmpdir,
         use_directory_urls=(directory_urls == "use_directory_urls"),
-        nav=load_config(str(example_dir / "mkdocs.yml"))["nav"] if nav == "explicit_nav" else None,
+        nav=load_config(str(example_dir / "properdocs.yml"))["nav"]
+        if nav == "explicit_nav"
+        else None,
     )
     files = get_files(config)
     nav = get_navigation(files, config)

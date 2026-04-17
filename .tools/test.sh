@@ -3,4 +3,4 @@ set -e
 
 cd "$(dirname "$0")/.."
 
-mkdocs build -f example/mkdocs.yml --strict
+properdocs build -f example/properdocs.yml --strict

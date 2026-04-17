@@ -1,7 +1,7 @@
 _commit: 6f0fa0dd1
 _src_path: gh:oprypin/py-project-template
 copyright_date: '2020'
-project_description: MkDocs plugin to allow clickable sections that lead to an index page
+project_description: ProperDocs plugin to allow clickable sections that lead to an index page
 project_name: mkdocs-section-index
 properdocs: true
 properdocs_install_self: false
@@ -10,4 +10,3 @@ python_distribution_name: mkdocs-section-index
 python_source_path: mkdocs_section_index
 repository_name: oprypin/mkdocs-section-index
 script_test: true
-

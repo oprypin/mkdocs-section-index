@@ -39,7 +39,7 @@ def build_site(cfg: str, src_dir: os.PathLike, dest_dir: os.PathLike) -> None:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(f"@{rel_path}@", encoding="utf-8")
 
-    f = Path(src_dir, "mkdocs.yml")
+    f = Path(src_dir, "properdocs.yml")
     f.write_text(cfg, encoding="utf-8")
     build(load_config(str(f)))
 

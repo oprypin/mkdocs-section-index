@@ -65,8 +65,8 @@ class SectionIndexPlugin(BasePlugin):
         if nav != self._nav:
             self._nav = nav
             log.warning(
-                "It seems that the effects of section-index plugin have been lost, because another MkDocs plugin re-wrote the nav! "
-                "Re-order `plugins` in mkdocs.yml so that 'section-index' appears closer to the end."
+                "It seems that the effects of section-index plugin have been lost, because another plugin re-wrote the nav! "
+                "Re-order `plugins` in properdocs.yml so that 'section-index' appears closer to the end."
             )
 
     def on_post_build(self, config):
