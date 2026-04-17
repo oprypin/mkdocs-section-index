@@ -4,10 +4,10 @@ build-backend = "hatchling.build"
 
 [project]
 name = "mkdocs-section-index"
-description = "MkDocs plugin to allow clickable sections that lead to an index page"
+description = "ProperDocs plugin to allow clickable sections that lead to an index page"
 readme = "README.md"
 license = "MIT"
-keywords = ["mkdocs", "mkdocs-plugin"]
+keywords = ["properdocs", "mkdocs", "mkdocs-plugin"]
 authors = [
     {name = "Oleh Prypin", email = "oleh@pryp.in"},
 ]
